@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="슬이봇 방별 기능 플랜 안내와 플랜 적용 명령어 생성">
+  <meta name="description" content="슬이봇 방별 기능 플랜 선택">
   <title>슬이봇 플랜 선택</title>
   <style>
     :root {
@@ -14,20 +14,16 @@
       --muted: #667085;
       --line: #d9e2ec;
       --brand: #0f766e;
-      --blue: #2563eb;
       --gold: #f59e0b;
       --soft: #e9f5f1;
-      --soft-blue: #edf4ff;
-      --soft-gold: #fff7df;
-      --shadow: 0 18px 44px rgba(23, 32, 51, .10);
+      --blue-soft: #edf4ff;
+      --shadow: 0 16px 38px rgba(23, 32, 51, .09);
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      background:
-        linear-gradient(180deg, #eef5fb, #f8fafc 380px),
-        var(--bg);
+      background: linear-gradient(180deg, #eef5fb, #f8fafc 380px);
       color: var(--ink);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
       line-height: 1.62;
@@ -41,7 +37,7 @@
         url("https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1800&q=80") center / cover;
       border-bottom: 5px solid var(--gold);
     }
-    .hero .wrap { min-height: 390px; display: grid; align-content: end; padding: 64px 0 52px; }
+    .hero .wrap { min-height: 360px; display: grid; align-content: end; padding: 60px 0 48px; }
     .eyebrow { margin: 0 0 12px; color: #fde68a; font-weight: 900; }
     h1 { margin: 0; font-size: clamp(38px, 7vw, 66px); line-height: 1.04; letter-spacing: 0; }
     .hero p { max-width: 780px; margin: 16px 0 0; color: #dbeafe; font-size: 19px; }
@@ -49,7 +45,7 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(255,255,255,.95);
+      background: rgba(255,255,255,.96);
       border-bottom: 1px solid var(--line);
       backdrop-filter: blur(10px);
     }
@@ -72,12 +68,7 @@
     }
     .nav a:hover { background: var(--soft); color: var(--brand); }
     main { padding: 30px 0 62px; }
-    .intro-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-bottom: 22px;
-    }
+    .intro-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 22px; }
     .intro-card, .panel, .plan, .apply {
       border: 1px solid var(--line);
       border-radius: 8px;
@@ -87,51 +78,26 @@
     .intro-card { padding: 18px; }
     .intro-card b { display: block; margin-bottom: 6px; font-size: 18px; }
     .intro-card p { margin: 0; color: var(--muted); }
-    .grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 390px;
-      gap: 18px;
-      align-items: start;
-    }
+    .grid { display: grid; grid-template-columns: minmax(0, 1fr) 390px; gap: 18px; align-items: start; }
     .section-head { margin: 0 0 16px; }
     h2 { margin: 0; font-size: 30px; letter-spacing: 0; }
     .section-head p { margin: 8px 0 0; color: var(--muted); }
     .plans { display: grid; gap: 14px; }
-    .plan {
-      display: grid;
-      gap: 16px;
-      padding: 22px;
-      scroll-margin-top: 86px;
-    }
-    .plan[data-active="true"] {
-      border-color: var(--brand);
-      box-shadow: 0 18px 44px rgba(15, 118, 110, .16);
-    }
-    .plan-head {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 12px;
-      align-items: start;
-    }
+    .plan { display: grid; gap: 16px; padding: 22px; scroll-margin-top: 86px; }
+    .plan[data-active="true"] { border-color: var(--brand); box-shadow: 0 18px 44px rgba(15, 118, 110, .16); }
+    .plan-head { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: start; }
     .plan h3 { margin: 0; font-size: 28px; letter-spacing: 0; }
     .badge {
       padding: 7px 10px;
       border-radius: 999px;
-      background: var(--soft-gold);
+      background: #fff7df;
       color: #92400e;
       font-size: 13px;
       font-weight: 900;
       white-space: nowrap;
     }
     .plan p { margin: 0; color: var(--muted); }
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 9px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
+    .feature-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; margin: 0; padding: 0; list-style: none; }
     .feature-grid li {
       display: grid;
       grid-template-columns: 26px 1fr;
@@ -154,11 +120,6 @@
       font-size: 13px;
       font-weight: 900;
     }
-    .plain-list {
-      margin: 8px 0 0;
-      padding-left: 19px;
-      color: #344054;
-    }
     .compare { margin-top: 18px; padding: 22px; }
     table { width: 100%; border-collapse: collapse; overflow: hidden; }
     th, td { padding: 12px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
@@ -166,13 +127,7 @@
     td:not(:first-child), th:not(:first-child) { text-align: center; }
     .yes { color: var(--brand); font-weight: 900; }
     .no { color: #98a2b3; }
-    .apply {
-      position: sticky;
-      top: 86px;
-      display: grid;
-      gap: 15px;
-      padding: 22px;
-    }
+    .apply { position: sticky; top: 86px; display: grid; gap: 15px; padding: 22px; }
     .apply h2 { font-size: 24px; }
     .field { display: grid; gap: 7px; }
     label { color: #344054; font-weight: 900; }
@@ -211,13 +166,7 @@
     }
     .button.secondary { background: #172033; }
     .hint { margin: 0; color: var(--muted); font-size: 13px; }
-    .warning {
-      padding: 13px;
-      border-radius: 8px;
-      background: var(--soft-blue);
-      color: #1d4ed8;
-      font-size: 14px;
-    }
+    .warning { padding: 13px; border-radius: 8px; background: var(--blue-soft); color: #1d4ed8; font-size: 14px; }
     .error { display: none; margin: 0; color: #b42318; font-weight: 850; }
     footer { padding: 28px 0; color: var(--muted); border-top: 1px solid var(--line); }
     @media (max-width: 980px) {
@@ -225,7 +174,7 @@
       .apply { position: static; }
     }
     @media (max-width: 640px) {
-      .hero .wrap { min-height: 340px; }
+      .hero .wrap { min-height: 330px; }
       .feature-grid { grid-template-columns: 1fr; }
       .plan-head { grid-template-columns: 1fr; }
       table { font-size: 14px; }
@@ -238,7 +187,7 @@
     <div class="wrap">
       <p class="eyebrow">IRIS BOT FEATURE PLAN</p>
       <h1>슬이봇 플랜 선택</h1>
-      <p>방마다 필요한 기능이 다릅니다. 기본 운영만 할지, 상점과 은행을 쓸지, 이미지·포켓몬·AI까지 쓸지 쉽게 고르도록 정리했습니다.</p>
+      <p>방마다 필요한 기능을 고르는 페이지입니다. 가격은 노출하지 않고, 어떤 기능이 어느 플랜부터 켜지는지만 정리했습니다.</p>
     </div>
   </header>
 
@@ -257,15 +206,15 @@
     <section class="intro-grid" aria-label="플랜 안내">
       <div class="intro-card">
         <b>베이직</b>
-        <p>입퇴장, 출석, 채팅순위, 포인트처럼 방 운영에 꼭 필요한 기본 기능입니다.</p>
+        <p>입퇴장, 출석, 채팅순위, 레벨, 포인트, 멘션 같은 기본 운영 기능입니다.</p>
       </div>
       <div class="intro-card">
         <b>디럭스</b>
-        <p>닉네임 변경 감지, 상점, 가방, 은행, 프로필, 메뉴 추천까지 쓰는 참여형 플랜입니다.</p>
+        <p>닉네임 변경 감지, 삭제 감지, 가림로그, 상점, 은행, 프로필, 메뉴/맛집, 가르치기를 포함합니다.</p>
       </div>
       <div class="intro-card">
         <b>플래티넘</b>
-        <p>이미지 저장/전송, 포켓몬 도감, 게임, AI 요약, MBTI 분석까지 켜는 확장 플랜입니다.</p>
+        <p>이미지 저장/전송, 낚시, 홀짝, 강화, 유령멤버, 날씨/운세/AI 분석까지 확장합니다.</p>
       </div>
     </section>
 
@@ -273,7 +222,7 @@
       <section id="plans">
         <div class="section-head">
           <h2>기능 플랜</h2>
-          <p>아래 설명은 실제 봇 코드의 기능 키와 맞춰 정리했습니다. 맨션 자동 안내와 레벨업 안내는 선택 부가기능입니다.</p>
+          <p>실제 봇 코드 기준으로 정리했습니다. 마스터 관리자 기능과 개인 API 관련 기능은 플랜에 포함하지 않습니다.</p>
         </div>
 
         <div class="plans">
@@ -281,7 +230,7 @@
             <div class="plan-head">
               <div>
                 <h3>베이직</h3>
-                <p>방을 처음 운영할 때 가장 안전한 기본 구성입니다.</p>
+                <p>방 운영을 시작할 때 필요한 기본 구성입니다.</p>
               </div>
               <span class="badge">기본 운영</span>
             </div>
@@ -291,56 +240,54 @@
               <li><span class="check">✓</span><span>채팅순위, 채팅량, 주간/월간 순위</span></li>
               <li><span class="check">✓</span><span>레벨과 잔여 포인트 조회</span></li>
               <li><span class="check">✓</span><span>멘션 명령과 멘션 기록</span></li>
-              <li><span class="check">✓</span><span>삭제 감지</span></li>
             </ul>
-            <p>추천 대상: 방 기본 관리, 출석 이벤트, 채팅순위만 필요한 방.</p>
           </article>
 
           <article class="plan" data-plan-card="deluxe">
             <div class="plan-head">
               <div>
                 <h3>디럭스</h3>
-                <p>멤버 참여 기능을 늘리고 싶을 때 쓰기 좋습니다.</p>
+                <p>멤버 관리와 참여형 기능을 더 넓게 쓰는 구성입니다.</p>
               </div>
               <span class="badge">추천</span>
             </div>
             <ul class="feature-grid">
               <li><span class="check">✓</span><span>베이직 전체 기능</span></li>
               <li><span class="check">✓</span><span>닉네임 변경 감지</span></li>
+              <li><span class="check">✓</span><span>삭제 감지와 /삭제로그</span></li>
+              <li><span class="check">✓</span><span>가림로그와 리액션 로그</span></li>
               <li><span class="check">✓</span><span>상점, 상품 구매, 가방</span></li>
-              <li><span class="check">✓</span><span>은행, 적금, 대출, 상환</span></li>
+              <li><span class="check">✓</span><span>은행, 입금, 대출, 상환</span></li>
               <li><span class="check">✓</span><span>프로필 등록과 조회</span></li>
               <li><span class="check">✓</span><span>메뉴 추천, 맛집 추천, 가르치기</span></li>
             </ul>
-            <p>추천 대상: 포인트를 쓰게 만들고, 상점이나 은행처럼 참여 요소를 넣고 싶은 방.</p>
           </article>
 
           <article class="plan" data-plan-card="platinum">
             <div class="plan-head">
               <div>
                 <h3>플래티넘</h3>
-                <p>이미지, 게임, 포켓몬, 브리핑, 분석까지 모두 쓰는 확장 구성입니다.</p>
+                <p>이미지, 게임, 낚시, 분석 기능까지 켜는 확장 구성입니다.</p>
               </div>
               <span class="badge">확장 운영</span>
             </div>
             <ul class="feature-grid">
               <li><span class="check">✓</span><span>디럭스 전체 기능</span></li>
               <li><span class="check">✓</span><span>이미지 저장, 이미지 전송, 하트 이미지</span></li>
-              <li><span class="check">✓</span><span>포켓몬 도감과 레이드 CP 정보</span></li>
-              <li><span class="check">✓</span><span>홀짝, 게임, 검 구매와 강화</span></li>
-              <li><span class="check">✓</span><span>가리기/리액션 로그, 유령멤버 확인</span></li>
+              <li><span class="check">✓</span><span>낚시 게임과 잉어킹 이벤트</span></li>
+              <li><span class="check">✓</span><span>홀짝, 검 구매, 강화 게임</span></li>
+              <li><span class="check">✓</span><span>유령멤버 확인</span></li>
               <li><span class="check">✓</span><span>날씨, 운세, 모닝브리핑</span></li>
               <li><span class="check">✓</span><span>일일통계, AI 요약, 질문</span></li>
               <li><span class="check">✓</span><span>MBTI와 성향 분석</span></li>
             </ul>
-            <p>추천 대상: 이벤트가 많고, 이미지나 게임, 분석 기능까지 쓰고 싶은 활동적인 방.</p>
           </article>
         </div>
 
         <section class="panel compare" id="compare" aria-label="플랜 비교표">
           <div class="section-head">
-            <h2>한눈에 보는 비교표</h2>
-            <p>포함은 바로 사용 가능, 꺼짐은 기본 플랜에는 들어가지 않는다는 뜻입니다.</p>
+            <h2>비교표</h2>
+            <p>삭제 감지와 가림로그는 디럭스부터, 낚시와 이미지는 플래티넘부터 제공됩니다.</p>
           </div>
           <table>
             <thead>
@@ -348,17 +295,18 @@
             </thead>
             <tbody>
               <tr><td>입퇴장 감지</td><td class="yes">포함</td><td class="yes">포함</td><td class="yes">포함</td></tr>
-              <tr><td>닉네임 변경 감지</td><td class="no">꺼짐</td><td class="yes">포함</td><td class="yes">포함</td></tr>
               <tr><td>출석, 채팅순위, 레벨, 포인트</td><td class="yes">포함</td><td class="yes">포함</td><td class="yes">포함</td></tr>
+              <tr><td>멘션 명령</td><td class="yes">포함</td><td class="yes">포함</td><td class="yes">포함</td></tr>
+              <tr><td>닉네임 변경 감지</td><td class="no">꺼짐</td><td class="yes">포함</td><td class="yes">포함</td></tr>
+              <tr><td>삭제 감지, /삭제로그</td><td class="no">꺼짐</td><td class="yes">포함</td><td class="yes">포함</td></tr>
+              <tr><td>가림로그, 리액션 로그</td><td class="no">꺼짐</td><td class="yes">포함</td><td class="yes">포함</td></tr>
               <tr><td>상점, 가방, 은행, 프로필</td><td class="no">꺼짐</td><td class="yes">포함</td><td class="yes">포함</td></tr>
               <tr><td>메뉴 추천, 맛집, 가르치기</td><td class="no">꺼짐</td><td class="yes">포함</td><td class="yes">포함</td></tr>
               <tr><td>이미지 저장/전송</td><td class="no">꺼짐</td><td class="no">꺼짐</td><td class="yes">포함</td></tr>
-              <tr><td>포켓몬 도감</td><td class="no">꺼짐</td><td class="no">꺼짐</td><td class="yes">포함</td></tr>
-              <tr><td>홀짝, 게임, 강화</td><td class="no">꺼짐</td><td class="no">꺼짐</td><td class="yes">포함</td></tr>
-              <tr><td>날씨, 운세, 브리핑</td><td class="no">꺼짐</td><td class="no">꺼짐</td><td class="yes">포함</td></tr>
-              <tr><td>일일통계, AI 요약, MBTI/성향</td><td class="no">꺼짐</td><td class="no">꺼짐</td><td class="yes">포함</td></tr>
-              <tr><td>맨션 자동 안내 메시지</td><td class="no">선택</td><td class="no">선택</td><td class="no">선택</td></tr>
-              <tr><td>레벨업 안내 메시지</td><td class="no">선택</td><td class="no">선택</td><td class="no">선택</td></tr>
+              <tr><td>낚시, 홀짝, 강화 게임</td><td class="no">꺼짐</td><td class="no">꺼짐</td><td class="yes">포함</td></tr>
+              <tr><td>날씨, 운세, AI 요약, MBTI</td><td class="no">꺼짐</td><td class="no">꺼짐</td><td class="yes">포함</td></tr>
+              <tr><td>멘션 자동 안내 메시지</td><td class="no">선택</td><td class="no">선택</td><td class="no">선택</td></tr>
+              <tr><td>레벨/채팅순위 안내 메시지</td><td class="no">선택</td><td class="no">선택</td><td class="no">선택</td></tr>
             </tbody>
           </table>
         </section>
@@ -366,10 +314,10 @@
 
       <aside class="apply" id="apply" aria-labelledby="apply-title">
         <h2 id="apply-title">플랜 적용 명령 만들기</h2>
-        <p class="hint">닉네임을 입력하고 플랜을 고르면, 카카오톡 방에 보낼 명령어가 만들어집니다.</p>
+        <p class="hint">닉네임을 입력하고 플랜을 고르면 방에 보낼 명령어가 만들어집니다.</p>
         <div class="field">
           <label for="nickname">현재 카카오톡 닉네임</label>
-          <input id="nickname" type="text" autocomplete="nickname" placeholder="예: 홍길동 91 전주">
+          <input id="nickname" type="text" autocomplete="nickname" placeholder="예: 슬이 91 전주">
           <p class="hint">명령을 보내는 사람의 실제 닉네임과 같아야 안전하게 적용됩니다.</p>
         </div>
         <div class="field">
@@ -384,15 +332,15 @@
           <label>선택 부가기능</label>
           <div class="addon-list">
             <label class="addon-item">
-              <input type="checkbox" value="맨션안내" data-addon>
+              <input type="checkbox" value="멘션안내" data-addon>
               <span>멘션 자동 안내 메시지 출력</span>
             </label>
             <label class="addon-item">
               <input type="checkbox" value="레벨업안내" data-addon>
-              <span>레벨업 또는 채팅순위 안내 메시지 출력</span>
+              <span>레벨 또는 채팅순위 안내 메시지 출력</span>
             </label>
           </div>
-          <p class="hint">선택하지 않아도 멘션 기능과 레벨 조회는 작동합니다. 안내 메시지만 기본 꺼짐입니다.</p>
+          <p class="hint">부가기능을 선택하지 않아도 멘션과 레벨 조회 기능은 작동합니다. 자동 안내 메시지만 기본 꺼짐입니다.</p>
         </div>
         <button class="button" type="button" id="makeCommand">명령 만들기</button>
         <p class="error" id="errorText">닉네임을 입력해 주세요.</p>
@@ -401,7 +349,7 @@
           <textarea id="command" readonly placeholder="여기에 명령어가 만들어집니다."></textarea>
         </div>
         <button class="button secondary" type="button" id="copyCommand">명령어 복사</button>
-        <div class="warning">명령어는 봇이 있는 카카오톡 방에 그대로 보내면 됩니다. 적용되는 방은 메시지를 보낸 그 방입니다.</div>
+        <div class="warning">명령어는 봇이 있는 카카오톡 방에 그대로 보내면 됩니다. 적용 대상은 메시지를 보낸 현재 방입니다.</div>
       </aside>
     </div>
   </main>
