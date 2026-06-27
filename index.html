@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="슬이봇 명령어와 방별 기능 도움말">
+  <meta name="description" content="슬이봇 명령어와 기능을 쉽게 찾는 웹 도움말">
   <title>슬이봇 도움말</title>
   <style>
     :root {
@@ -12,18 +12,23 @@
       --paper: #ffffff;
       --ink: #172033;
       --muted: #667085;
+      --soft: #e9f5f1;
+      --soft-2: #fff7df;
       --line: #d9e2ec;
       --brand: #0f766e;
-      --blue: #2563eb;
-      --gold: #f59e0b;
-      --soft: #e9f5f1;
-      --shadow: 0 16px 38px rgba(23, 32, 51, .09);
+      --brand-2: #2563eb;
+      --accent: #f59e0b;
+      --danger: #b42318;
+      --shadow: 0 18px 44px rgba(23, 32, 51, .10);
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      background: linear-gradient(180deg, #eef5fb, #f8fafc 420px);
+      background:
+        radial-gradient(circle at 14% 10%, rgba(15, 118, 110, .08), transparent 34%),
+        radial-gradient(circle at 88% 4%, rgba(37, 99, 235, .08), transparent 32%),
+        var(--bg);
       color: var(--ink);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
       line-height: 1.62;
@@ -34,17 +39,22 @@
     .hero {
       color: #fff;
       background:
-        linear-gradient(90deg, rgba(12, 30, 43, .94), rgba(12, 30, 43, .68)),
+        linear-gradient(90deg, rgba(12, 30, 43, .95), rgba(12, 30, 43, .72)),
         url("https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1800&q=80") center / cover;
-      border-bottom: 5px solid var(--gold);
+      border-bottom: 5px solid var(--accent);
     }
-    .hero .wrap { min-height: 350px; display: grid; align-content: end; padding: 58px 0 46px; }
+    .hero .wrap { min-height: 360px; display: grid; align-content: end; padding: 58px 0 48px; }
     .eyebrow { margin: 0 0 12px; color: #fde68a; font-weight: 900; }
     h1 { margin: 0; font-size: clamp(38px, 7vw, 66px); line-height: 1.04; letter-spacing: 0; }
-    .hero p { max-width: 780px; margin: 16px 0 0; color: #dbeafe; font-size: 19px; }
-    .quick { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
+    .hero p { max-width: 760px; margin: 16px 0 0; color: #dbeafe; font-size: 19px; }
+    .quick {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 26px;
+    }
     .quick a {
-      min-height: 74px;
+      min-height: 78px;
       padding: 14px;
       border: 1px solid rgba(255,255,255,.2);
       border-radius: 8px;
@@ -58,7 +68,7 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(255,255,255,.96);
+      background: rgba(255,255,255,.95);
       border-bottom: 1px solid var(--line);
       backdrop-filter: blur(10px);
     }
@@ -86,6 +96,7 @@
       justify-content: center;
       min-height: 46px;
       padding: 0 15px;
+      border: 1px solid var(--brand);
       border-radius: 8px;
       background: var(--brand);
       color: #fff;
@@ -94,11 +105,21 @@
       white-space: nowrap;
     }
     main { padding: 28px 0 60px; }
-    .layout { display: grid; grid-template-columns: 286px minmax(0, 1fr); gap: 18px; align-items: start; }
-    .side { position: sticky; top: 88px; display: grid; gap: 10px; }
+    .layout {
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+    .side {
+      position: sticky;
+      top: 88px;
+      display: grid;
+      gap: 10px;
+    }
     .side a {
       display: grid;
-      grid-template-columns: 34px 1fr;
+      grid-template-columns: 36px 1fr;
       gap: 10px;
       align-items: center;
       padding: 12px;
@@ -108,14 +129,14 @@
       text-decoration: none;
     }
     .side b {
-      width: 30px;
-      height: 30px;
+      width: 32px;
+      height: 32px;
       display: grid;
       place-items: center;
       border-radius: 999px;
       background: var(--soft);
       color: var(--brand);
-      font-size: 13px;
+      font-size: 14px;
     }
     .side span { font-weight: 900; }
     .section {
@@ -127,13 +148,20 @@
       box-shadow: var(--shadow);
       scroll-margin-top: 92px;
     }
-    .section-head { display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: start; padding-bottom: 15px; border-bottom: 1px solid var(--line); }
+    .section-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: start;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
     h2 { margin: 0; font-size: 28px; line-height: 1.2; letter-spacing: 0; }
     .lead { margin: 8px 0 0; color: var(--muted); }
-    .badge {
+    .plan-badge {
       padding: 7px 10px;
       border-radius: 999px;
-      background: #fff7df;
+      background: var(--soft-2);
       color: #92400e;
       font-size: 13px;
       font-weight: 900;
@@ -203,19 +231,19 @@
     <div class="wrap">
       <p class="eyebrow">IRIS BOT HELP</p>
       <h1>슬이봇 도움말</h1>
-      <p>채팅방에서 쓰는 명령어를 기능별로 정리했습니다. 검색창에 명령어나 기능 이름을 입력하면 필요한 항목만 바로 확인할 수 있습니다.</p>
+      <p>카카오톡 방에서 쓰는 명령어를 쉽게 찾을 수 있게 정리했습니다. 어려운 말보다 “무엇을 입력하면 무엇이 되는지”를 먼저 보여드립니다.</p>
       <div class="quick" aria-label="빠른 이동">
-        <a href="#start"><strong>처음 사용</strong><span>도움말과 플랜 링크</span></a>
-        <a href="#points"><strong>레벨/포인트</strong><span>채팅순위와 포인트 조회</span></a>
-        <a href="#logs"><strong>삭제/가림 로그</strong><span>디럭스부터 제공</span></a>
-        <a href="pricing.html"><strong>플랜 보기</strong><span>방별 기능 구성</span></a>
+        <a href="#start"><strong>처음 쓰는 분</strong><span>기본 사용법 먼저 보기</span></a>
+        <a href="#attendance"><strong>출석</strong><span>ㅊㅊ, 출석현황, 보상</span></a>
+        <a href="#points"><strong>레벨·포인트</strong><span>내 포인트와 순위 확인</span></a>
+        <a href="pricing.html"><strong>플랜 보기</strong><span>방별 기능 선택 안내</span></a>
       </div>
     </div>
   </header>
 
   <div class="toolbar">
     <div class="wrap">
-      <input id="search" class="search" type="search" placeholder="명령어 또는 기능 검색: 출석, 삭제로그, 낚시, 이미지, 플랜" autocomplete="off">
+      <input id="search" class="search" type="search" placeholder="명령어 또는 기능을 검색하세요. 예: 출석, 레벨, 이미지, 날씨" autocomplete="off">
       <a class="link-button" href="pricing.html">플랜 선택 보기</a>
     </div>
   </div>
@@ -225,177 +253,199 @@
       <nav class="side" aria-label="도움말 목차">
         <a href="#start"><b>1</b><span>처음 사용</span></a>
         <a href="#attendance"><b>2</b><span>출석</span></a>
-        <a href="#points"><b>3</b><span>채팅/레벨/포인트</span></a>
-        <a href="#member"><b>4</b><span>입퇴장/닉네임</span></a>
-        <a href="#economy"><b>5</b><span>상점/은행</span></a>
-        <a href="#game"><b>6</b><span>게임/낚시</span></a>
-        <a href="#utility"><b>7</b><span>이미지/편의</span></a>
-        <a href="#logs"><b>8</b><span>삭제/가림 로그</span></a>
+        <a href="#points"><b>3</b><span>채팅·레벨·포인트</span></a>
+        <a href="#member"><b>4</b><span>입퇴장·멤버</span></a>
+        <a href="#shop"><b>5</b><span>상점·은행</span></a>
+        <a href="#game"><b>6</b><span>게임</span></a>
+        <a href="#utility"><b>7</b><span>편의 기능</span></a>
+        <a href="#ai"><b>8</b><span>브리핑·AI</span></a>
         <a href="#admin"><b>9</b><span>관리자</span></a>
       </nav>
 
       <div>
-        <p id="empty" class="empty">검색 결과가 없습니다. 다른 단어로 검색해 보세요.</p>
+        <p id="empty" class="empty">검색 결과가 없습니다. 단어를 조금 짧게 입력해 보세요.</p>
 
-        <section class="section" id="start" data-search="도움말 플랜 링크 명령어">
+        <section class="section" id="start" data-search="처음 시작 도움말 사용법 플랜 명령어">
           <div class="section-head">
             <div>
-              <h2>처음 사용</h2>
-              <p class="lead">전체 도움말과 플랜 선택 페이지를 여는 기본 명령어입니다.</p>
+              <h2>처음 쓰는 분은 이것만 기억하세요</h2>
+              <p class="lead">대부분의 명령어는 앞에 /를 붙여 입력합니다. 출석은 / 없이 ㅊㅊ만 입력해도 됩니다.</p>
             </div>
-            <span class="badge">모든 플랜</span>
+            <span class="plan-badge">모든 플랜 공통</span>
           </div>
+          <div class="note">방마다 켜진 기능이 다릅니다. 명령어가 반응하지 않으면 관리자에게 현재 플랜을 확인해 달라고 하세요.</div>
           <div class="commands">
-            <div class="command"><code>/도움말</code><p>웹 도움말 링크를 출력합니다.</p></div>
-            <div class="command"><code>/플랜</code><p>플랜 선택 웹페이지 링크를 출력합니다.</p></div>
+            <div class="command"><code>/도움말</code><p>이 웹 도움말 링크를 다시 보여줍니다.<small>카톡 메시지 안에서 길게 펼쳐지지 않고, 웹에서 편하게 볼 수 있습니다.</small></p></div>
+            <div class="command"><code>/플랜</code><p>플랜 선택 페이지 링크를 보여줍니다.<small>관리자가 방에 어떤 기능을 켤지 고를 때 사용합니다.</small></p></div>
             <div class="command"><code>/플랜조회</code><p>현재 방에 적용된 플랜과 켜진 기능을 확인합니다.</p></div>
           </div>
         </section>
 
-        <section class="section" id="attendance" data-search="출석 ㅊㅊ 출석현황 출석순위">
+        <section class="section" id="attendance" data-search="출석 ㅊㅊ 출석현황 출석순위 내출석 보상">
           <div class="section-head">
             <div>
               <h2>출석</h2>
-              <p class="lead">하루 한 번 출석을 체크하고 출석 보상을 받습니다.</p>
+              <p class="lead">오늘 왔다는 표시를 남기고, 순서에 따라 출석 보상 포인트를 받습니다.</p>
             </div>
-            <span class="badge">베이직부터</span>
+            <span class="plan-badge">베이직 이상</span>
           </div>
           <div class="commands">
-            <div class="command"><code>ㅊㅊ</code><p>오늘 출석을 체크합니다.</p></div>
+            <div class="command"><code>ㅊㅊ</code><p>오늘 출석을 체크합니다.<small>/ㅊㅊ도 됩니다. 하루에 한 번만 인정됩니다.</small></p></div>
             <div class="command"><code>/출석</code><p>오늘 출석을 체크합니다.</p></div>
-            <div class="command"><code>/출석현황</code><p>오늘 출석한 사람과 시간을 확인합니다.</p></div>
-            <div class="command"><code>/출석순위</code><p>누적 출석과 연속 출석 순위를 확인합니다.</p></div>
+            <div class="command"><code>/출석현황</code><p>오늘 출석한 사람과 시간을 보여줍니다.</p></div>
+            <div class="command"><code>/출석순위</code><p>누적 출석과 연속 출석 순위를 보여줍니다.</p></div>
+            <div class="command"><code>/내출석</code><p>내 출석 횟수와 연속 출석 정보를 확인합니다.</p></div>
           </div>
         </section>
 
-        <section class="section" id="points" data-search="채팅순위 채팅량 레벨 포인트 포인트순위 지급">
+        <section class="section" id="points" data-search="채팅순위 채팅량 레벨 포인트 포인트순위 주간 월간 카카오 DB">
           <div class="section-head">
             <div>
-              <h2>채팅/레벨/포인트</h2>
-              <p class="lead">채팅량은 카카오톡 원본 DB를 기준으로 조회하며, 봇이 채팅 원문을 별도로 저장하지 않습니다.</p>
+              <h2>채팅·레벨·포인트</h2>
+              <p class="lead">채팅수는 카카오 원본 DB에서 읽어 보여줍니다. 봇이 채팅 원문을 따로 저장하지 않습니다.</p>
             </div>
-            <span class="badge">베이직부터</span>
+            <span class="plan-badge">베이직 이상</span>
           </div>
+          <div class="note">포인트는 채팅 1번당 1P씩 쌓이고, 출석 보상이나 관리자 지급 포인트도 여기에 더해집니다. 누적 채팅수와 잔여 포인트는 서로 다른 값입니다.</div>
           <div class="commands">
-            <div class="command"><code>/레벨</code><p>내 누적 채팅, 레벨, 잔여 포인트를 확인합니다.</p></div>
-            <div class="command"><code>/레벨 @닉네임</code><p>특정 사용자의 레벨 상태를 확인합니다.</p></div>
-            <div class="command"><code>/채팅순위</code><p>방 전체 누적 채팅 순위를 확인합니다.</p></div>
-            <div class="command"><code>/채팅량</code><p>오늘 채팅량 순위를 확인합니다.</p></div>
-            <div class="command"><code>/주간</code><p>최근 7일 채팅 순위를 확인합니다.</p></div>
-            <div class="command"><code>/월간</code><p>이번 달 채팅 순위를 확인합니다.</p></div>
-            <div class="command"><code>/포인트순위</code><p>잔여 포인트가 많은 순서로 확인합니다.</p></div>
+            <div class="command"><code>/레벨</code><p>내 누적 채팅수, 레벨, 잔여 포인트를 확인합니다.<small>카카오 DB 채팅수 조회가 실패하면 실패 메시지를 보여줍니다.</small></p></div>
+            <div class="command"><code>/채팅순위</code><p>현재 방의 누적 채팅 순위를 보여줍니다.</p></div>
+            <div class="command"><code>/채팅량</code><p>오늘 하루 채팅량을 보여줍니다.</p></div>
+            <div class="command"><code>/주간</code><p>최근 7일 채팅 순위를 보여줍니다.</p></div>
+            <div class="command"><code>/월간</code><p>지난달 채팅 순위를 보여줍니다.</p></div>
+            <div class="command"><code>/포인트순위</code><p>잔여 포인트가 많은 순서로 보여줍니다.</p></div>
           </div>
         </section>
 
-        <section class="section" id="member" data-search="입퇴장 닉네임 닉네임변경 가입자목록 입장문구">
+        <section class="section" id="member" data-search="입퇴장 닉네임 변경 가입자목록 내정보 입장문구설정 입장문구보기 닉네임이력">
           <div class="section-head">
             <div>
-              <h2>입퇴장/닉네임</h2>
-              <p class="lead">멤버 변동과 닉네임 변경을 추적합니다.</p>
+              <h2>입퇴장·멤버 관리</h2>
+              <p class="lead">누가 들어오고 나갔는지, 닉네임이 바뀌었는지 확인하는 운영 기능입니다.</p>
             </div>
-            <span class="badge">입퇴장 베이직 / 닉네임 디럭스</span>
+            <span class="plan-badge">입퇴장: 베이직 / 닉변: 디럭스 이상</span>
           </div>
           <div class="commands">
-            <div class="command"><code>/가입자목록</code><p>현재 방에 있는 멤버 목록을 확인합니다.</p></div>
-            <div class="command"><code>/내정보</code><p>내 입장 기록과 닉네임 정보를 확인합니다.</p></div>
-            <div class="command"><code>/닉네임히스토리</code><p>닉네임 변경 기록을 확인합니다.</p></div>
-            <div class="command"><code>/입장문구보기</code><p>새 멤버에게 출력되는 입장 문구를 확인합니다.</p></div>
-            <div class="command"><code>/입장문구설정 문구</code><p>입장 안내 문구를 저장합니다.</p></div>
+            <div class="command"><code>/가입자목록</code><p>현재 방에 있는 멤버 목록을 보여줍니다.</p></div>
+            <div class="command"><code>/내정보</code><p>내 입장 기록, 최근 활동, 닉네임 정보를 확인합니다.</p></div>
+            <div class="command"><code>/내정보 닉네임</code><p>관리자가 특정 멤버의 정보를 확인할 때 사용합니다.</p></div>
+            <div class="command"><code>/닉네임이력</code><p>내 닉네임 변경 기록을 확인합니다.</p></div>
+            <div class="command"><code>/입장문구보기</code><p>새로 들어온 사람에게 안내할 입장 문구를 확인합니다.</p></div>
+            <div class="command"><code>/입장문구설정 문구</code><p>입장 환영 문구를 저장합니다.<small>관리자만 사용할 수 있습니다.</small></p></div>
+            <div class="command"><code>/입장문구초기화</code><p>입장 문구를 기본 문구로 되돌립니다.</p></div>
           </div>
         </section>
 
-        <section class="section" id="economy" data-search="상점 상품 가방 은행 입금 대출 상환">
+        <section class="section" id="shop" data-search="상점 가방 상품 구매 사용 양도 판매 은행 적금 대출 상환">
           <div class="section-head">
             <div>
-              <h2>상점/가방/은행</h2>
-              <p class="lead">포인트를 쓰는 참여형 기능입니다.</p>
+              <h2>상점·가방·은행</h2>
+              <p class="lead">포인트로 상품을 사고, 아이템을 보관하거나 은행 기능을 사용할 수 있습니다.</p>
             </div>
-            <span class="badge">디럭스부터</span>
+            <span class="plan-badge">디럭스 이상</span>
           </div>
           <div class="commands">
-            <div class="command"><code>/상품목록</code><p>구매 가능한 상품 목록을 확인합니다.</p></div>
+            <div class="command"><code>/상품목록</code><p>살 수 있는 상품 목록을 보여줍니다.</p></div>
             <div class="command"><code>/구매 상품명</code><p>포인트로 상품을 구매합니다.</p></div>
-            <div class="command"><code>/가방</code><p>보유 중인 상품과 아이템을 확인합니다.</p></div>
-            <div class="command"><code>/사용 번호</code><p>가방의 아이템을 사용합니다.</p></div>
-            <div class="command"><code>/은행</code><p>은행 상태와 사용 가능한 명령어를 확인합니다.</p></div>
-            <div class="command"><code>/입금 금액</code><p>포인트를 은행에 입금합니다.</p></div>
+            <div class="command"><code>/가방</code><p>내가 가진 상품과 아이템을 보여줍니다.</p></div>
+            <div class="command"><code>/사용 번호</code><p>가방에 있는 아이템을 사용합니다.</p></div>
+            <div class="command"><code>/상품양도 닉네임 번호</code><p>내 상품을 다른 사람에게 양도합니다.</p></div>
+            <div class="command"><code>/상품판매 번호</code><p>상품을 판매해 포인트로 돌려받습니다.</p></div>
+            <div class="command"><code>/은행</code><p>은행 상태와 이용 가능한 메뉴를 확인합니다.</p></div>
+            <div class="command"><code>/적금가입 금액</code><p>포인트를 적금에 넣습니다.</p></div>
             <div class="command"><code>/대출 금액</code><p>포인트를 대출합니다.</p></div>
             <div class="command"><code>/상환 금액</code><p>대출금을 갚습니다.</p></div>
           </div>
         </section>
 
-        <section class="section" id="game" data-search="게임 낚시 낚시게임 낚시도감 낚시랭킹 잉어킹 슬이의가방 잡동사니 홀짝 강화 검 공격 몬스터">
+        <section class="section" id="game" data-search="게임 홀짝 포인트양도 배팅제한 검 강화 몬스터 이벤트 공격 채굴게임 채굴 게임상점 교환소 조약돌 반짝조약돌 희귀광석 보석">
           <div class="section-head">
             <div>
-              <h2>게임/낚시</h2>
-              <p class="lead">포인트를 쓰는 게임 기능입니다. 낚시게임은 플래티넘 이상에서 사용할 수 있습니다.</p>
+              <h2>게임</h2>
+              <p class="lead">포인트를 사용해 홀짝을 하거나, 검을 사고 강화하고, 채굴 재화를 교환소에서 사용할 수 있습니다.</p>
             </div>
-            <span class="badge">플래티넘 이상</span>
+            <span class="plan-badge">플래티넘</span>
           </div>
           <div class="commands">
-            <div class="command"><code>/낚시게임</code><p>낚시 사용법, 배팅 범위, 도감과 랭킹 명령어를 확인합니다.</p></div>
-            <div class="command"><code>/낚시 금액</code><p>포인트를 걸고 낚시를 합니다. 물고기, 잡동사니, 슬이의 가방 보너스가 나오며 낮은 확률로 전설의 물고기 잉어킹 이벤트가 등장합니다.</p></div>
-            <div class="command"><code>/낚시도감</code><p>내가 잡은 물고기 기록을 확인합니다.</p></div>
-            <div class="command"><code>/낚시랭킹</code><p>낚시 기록 순위를 확인합니다.</p></div>
-            <div class="command"><code>/홀짝 1000 홀</code><p>포인트를 걸고 홀짝 게임을 합니다.</p></div>
-            <div class="command"><code>/강화게임</code><p>검 구매와 강화 방법을 확인합니다.</p></div>
+            <div class="command"><code>/홀짝 1000 홀</code><p>1000P를 걸고 홀짝 게임을 합니다.<small>결과 숫자와 판정이 헷갈리지 않도록 판정 기준을 코드에서 관리합니다.</small></p></div>
+            <div class="command"><code>/포인트양도 닉네임 금액</code><p>다른 사람에게 포인트를 양도합니다.</p></div>
+            <div class="command"><code>/배팅제한 금액</code><p>홀짝 1회 최대 배팅 금액을 설정합니다.</p></div>
+            <div class="command"><code>/강화게임</code><p>검 구매와 강화 방법을 안내합니다.</p></div>
             <div class="command"><code>/검구매 번호</code><p>검을 구매합니다.</p></div>
+            <div class="command"><code>/내검</code><p>내가 가진 검 목록을 확인합니다.</p></div>
             <div class="command"><code>/강화 번호</code><p>선택한 검을 강화합니다.</p></div>
-            <div class="command"><code>공격</code><p>진행 중인 몬스터 이벤트에 참여합니다.</p></div>
+            <div class="command"><code>/채굴게임</code><p>채굴게임과 교환소 이용 방법을 안내합니다.</p></div>
+            <div class="command"><code>/채굴</code><p>조약돌, 반짝조약돌, 희귀광석, 보석을 채굴합니다.</p></div>
+            <div class="command"><code>/게임상점</code><p>채굴 재화를 포인트, 보석, 게임횟수로 바꾸는 교환소를 엽니다.</p></div>
+            <div class="command"><code>/게임상점 포인트 조약돌 1</code><p>조약돌 1개처럼 소량 단위로 포인트를 교환합니다.</p></div>
+            <div class="command"><code>/게임상점 게임횟수 조약돌 20</code><p>조약돌 20개로 게임횟수 1회를 교환합니다.</p></div>
+            <div class="command"><code>^이벤트</code><p>몬스터 이벤트를 시작합니다.</p></div>
+            <div class="command"><code>공격</code><p>진행 중인 몬스터를 공격합니다.</p></div>
           </div>
         </section>
 
-        <section class="section" id="utility" data-search="멘션 이미지 사진전송 메뉴 맛집 가르치기">
+        <section class="section" id="utility" data-search="멘션 메뉴 맛집 이미지 사진전송 이미지등록 이미지삭제 이미지목록">
           <div class="section-head">
             <div>
-              <h2>이미지/편의 기능</h2>
-              <p class="lead">멘션 대기열, 이미지 저장/전송, 메뉴 추천 같은 편의 기능입니다.</p>
+              <h2>편의 기능</h2>
+              <p class="lead">멘션 알림, 메뉴 추천, 맛집 추천, 방별 이미지 저장과 전송 기능입니다.</p>
             </div>
-            <span class="badge">멘션 베이직 / 이미지 플래티넘</span>
+            <span class="plan-badge">멘션: 베이직 / 이미지: 플래티넘</span>
           </div>
           <div class="commands">
-            <div class="command"><code>@닉네임 내용</code><p>상대가 채팅하면 대기 중인 멘션을 알려줍니다.</p></div>
-            <div class="command"><code>/멘션순위</code><p>멘션 사용 통계를 확인합니다.</p></div>
-            <div class="command"><code>/내멘션</code><p>내게 온 멘션 기록을 확인합니다.</p></div>
-            <div class="command"><code>!사진전송 이름</code><p>카카오톡에 올린 최근 이미지를 해당 이름으로 저장할 준비를 합니다.</p></div>
-            <div class="command"><code>!이미지이름</code><p>저장된 방 이미지 파일을 전송합니다.</p></div>
-            <div class="command"><code>!이미지삭제 이름</code><p>저장된 이미지를 삭제합니다.</p></div>
-            <div class="command"><code>/이미지목록</code><p>이 방에 저장된 이미지 목록을 확인합니다.</p></div>
-            <div class="command"><code>/메뉴</code><p>무작위 메뉴를 추천합니다.</p></div>
+            <div class="command"><code>@닉네임 내용</code><p>상대가 나중에 채팅하면 알림을 전달합니다.</p></div>
+            <div class="command"><code>/멘션순위</code><p>멘션 사용 통계를 보여줍니다.</p></div>
+            <div class="command"><code>/내멘션</code><p>내 멘션 기록을 확인합니다.</p></div>
+            <div class="command"><code>/아메추</code><p>아침 메뉴를 추천합니다. /점메추, /저메추도 사용할 수 있습니다.</p></div>
+            <div class="command"><code>/메뉴</code><p>랜덤 메뉴를 추천합니다.</p></div>
             <div class="command"><code>/맛집 지역명</code><p>입력한 지역의 맛집을 추천합니다.</p></div>
-            <div class="command"><code>/가르치기 명령어 내용</code><p>방 전용 자동 답변을 등록합니다.</p></div>
+            <div class="command"><code>!사진전송 이름</code><p>카카오톡에 올린 최근 이미지를 해당 이름으로 저장하는 준비를 합니다.</p></div>
+            <div class="command"><code>!이미지이름</code><p>저장된 방 이미지를 다시 전송합니다.</p></div>
+            <div class="command"><code>!이미지삭제 이름</code><p>저장된 이미지를 삭제합니다.</p></div>
+            <div class="command"><code>/이미지목록</code><p>이 방에 저장된 이미지 목록을 보여줍니다.</p></div>
           </div>
         </section>
 
-        <section class="section" id="logs" data-search="삭제 감지 삭제로그 가림로그 가리기 리액션 로그">
+        <section class="section" id="ai" data-search="날씨 운세 모닝브리핑 일일통계 요약 질문 MBTI 성향 가르치기">
           <div class="section-head">
             <div>
-              <h2>삭제/가림 로그</h2>
-              <p class="lead">삭제 감지와 가림 로그는 디럭스부터 제공됩니다. 기록은 방별 DB에 따로 저장됩니다.</p>
+              <h2>브리핑·분석</h2>
+              <p class="lead">날씨와 운세, 대화 요약, MBTI/성향 분석, 가르치기 기능을 모았습니다.</p>
             </div>
-            <span class="badge">디럭스부터</span>
+            <span class="plan-badge">대부분 플래티넘</span>
           </div>
           <div class="commands">
-            <div class="command"><code>/삭제로그</code><p>최근 삭제 감지 기록을 확인합니다.<small>삭제자, 감지 시각, 원본 작성자/내용이 확인되는 경우 함께 표시됩니다.</small></p></div>
-            <div class="command"><code>/가림로그</code><p>최근 메시지 가리기 기록을 확인합니다.<small>가린 사람과 가려진 메시지 수를 중심으로 표시됩니다.</small></p></div>
+            <div class="command"><code>/날씨 전주</code><p>지역 날씨를 확인합니다.</p></div>
+            <div class="command"><code>/모닝브리핑</code><p>날씨와 방 운영에 필요한 아침 정보를 모아 보여줍니다.</p></div>
+            <div class="command"><code>/운세 양자리</code><p>별자리 또는 띠 운세를 확인합니다.</p></div>
+            <div class="command"><code>/일일통계</code><p>오늘 방 활동 통계를 보여줍니다.</p></div>
+            <div class="command"><code>!요약</code><p>오늘 대화를 짧게 요약합니다.</p></div>
+            <div class="command"><code>^질문 내용</code><p>AI에게 질문합니다.</p></div>
+            <div class="command"><code>/MBTI</code><p>내 최근 대화 성향을 분석합니다.</p></div>
+            <div class="command"><code>/성격</code><p>대화 스타일을 바탕으로 성향을 분석합니다.</p></div>
+            <div class="command"><code>/가르치기 명령어 내용</code><p>방에서 쓸 커스텀 답변을 등록합니다.</p></div>
           </div>
         </section>
 
-        <section class="section" id="admin" data-search="관리자 플랜적용 관리자추가 관리자삭제 지급 포인트초기화">
+        <section class="section" id="admin" data-search="관리자 포인트지급 초기화 플랜적용 삭제감지 백업 정리 게임시작 게임종료">
           <div class="section-head">
             <div>
               <h2>관리자 기능</h2>
-              <p class="lead">방 관리자만 사용할 수 있는 설정 명령어입니다.</p>
+              <p class="lead">방 관리자만 사용할 수 있는 설정 명령입니다. 포인트와 채팅수는 분리되어 관리됩니다.</p>
             </div>
-            <span class="badge">관리자 전용</span>
+            <span class="plan-badge">관리자 전용</span>
           </div>
+          <div class="note">현재 초기화 명령은 잔여 포인트만 0P로 맞춥니다. 누적 채팅수는 카카오 원본 DB 기준이라 초기화하지 않습니다.</div>
           <div class="commands">
             <div class="command"><code>/관리자목록</code><p>현재 관리자 목록을 확인합니다.</p></div>
             <div class="command"><code>/관리자추가 닉네임</code><p>관리자를 추가합니다.</p></div>
             <div class="command"><code>/관리자삭제 닉네임</code><p>관리자를 삭제합니다.</p></div>
-            <div class="command"><code>/지급 @닉네임 1000</code><p>사용자에게 포인트를 지급합니다.</p></div>
-            <div class="command"><code>/포인트초기화</code><p>현재 방의 잔여 포인트를 초기화합니다.</p></div>
-            <div class="command"><code>/플랜적용 디럭스 닉네임</code><p>선택한 플랜 기능을 현재 방에 적용합니다.</p></div>
+            <div class="command"><code>/지급 닉네임 1000</code><p>해당 유저에게 포인트를 지급합니다.<small>채팅수는 올라가지 않고 포인트만 증가합니다.</small></p></div>
+            <div class="command"><code>/포인트초기화</code><p>현재 가입자들의 잔여 포인트만 0P로 맞춥니다.</p></div>
+            <div class="command"><code>/게임시작</code><p>게임 기능을 켭니다.</p></div>
+            <div class="command"><code>/게임종료</code><p>게임 기능을 끕니다.</p></div>
+            <div class="command"><code>/플랜적용 디럭스 닉네임</code><p>현재 방에 선택한 플랜 기능을 적용합니다.</p></div>
+            <div class="command"><code>/정리확인</code><p>오래된 로그와 정리 대상 상태를 확인합니다.</p></div>
           </div>
         </section>
       </div>
@@ -403,7 +453,7 @@
   </main>
 
   <footer>
-    <div class="wrap">슬이봇 도움말. 방별 플랜 설정에 따라 실제 사용 가능한 기능이 달라질 수 있습니다.</div>
+    <div class="wrap">슬이봇 도움말. 기능은 방별 플랜 설정에 따라 다르게 보일 수 있습니다.</div>
   </footer>
 
   <script>
